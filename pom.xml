@@ -38,6 +38,13 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!--Базы данных-->
 
         <dependency>
@@ -75,6 +82,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>donna-maria-API</finalName>
     </build>
 
 </project>
