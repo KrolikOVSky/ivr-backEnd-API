@@ -30,9 +30,7 @@ public class GroupController {
         if (groupsRepo.existsByName(name)) {
             return NotFoundResult;
         }
-        Groups group = new Groups();
-        group.setName(name);
-        group.setImageFileName(saveFile(file));
+        Groups group = new Groups(name, saveFile(file));
         groupsRepo.save(group);
         return OkResult;
     }

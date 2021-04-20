@@ -31,7 +31,9 @@ public class Global {
                 System.out.println(uploadDir.mkdir());
             }
 
-            String resultFile = UUID.randomUUID().toString();
+            String fileName = file.getOriginalFilename();
+            fileName = fileName.substring(fileName.lastIndexOf("."));
+            String resultFile = UUID.randomUUID().toString() + fileName;
 
             try {
                 file.transferTo(new File(uploadPath + "/" + resultFile));

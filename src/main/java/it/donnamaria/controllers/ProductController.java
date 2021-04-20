@@ -1,9 +1,9 @@
 package it.donnamaria.controllers;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import it.donnamaria.models.Products;
 import it.donnamaria.repos.GroupsRepo;
 import it.donnamaria.repos.ProductsRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
