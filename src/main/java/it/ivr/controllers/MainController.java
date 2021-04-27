@@ -1,4 +1,4 @@
-package it.donnamaria.controllers;
+package it.ivr.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 

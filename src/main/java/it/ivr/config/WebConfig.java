@@ -1,4 +1,4 @@
-package it.donnamaria.config;
+package it.ivr.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

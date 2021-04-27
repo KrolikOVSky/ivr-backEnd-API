@@ -1,4 +1,4 @@
-package it.donnamaria;
+package it.ivr;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;

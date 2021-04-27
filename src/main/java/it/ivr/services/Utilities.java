@@ -1,4 +1,4 @@
-package it.donnamaria.services;
+package it.ivr.services;
 
 public class Utilities {
     public static String convert(String word) {

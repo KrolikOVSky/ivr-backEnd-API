@@ -1,6 +1,6 @@
-package it.donnamaria.repos;
+package it.ivr.repos;
 
-import it.donnamaria.models.Products;
+import it.ivr.models.Products;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

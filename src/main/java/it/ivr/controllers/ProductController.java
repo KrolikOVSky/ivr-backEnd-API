@@ -1,28 +1,23 @@
-package it.donnamaria.controllers;
+package it.ivr.controllers;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import it.donnamaria.models.Products;
-import it.donnamaria.repos.GroupsRepo;
-import it.donnamaria.repos.ProductsRepo;
+import it.ivr.models.Products;
+import it.ivr.repos.GroupsRepo;
+import it.ivr.repos.ProductsRepo;
+import it.ivr.Global;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-import static it.donnamaria.Global.*;
-
 @RestController
 @RequestMapping("api/product")
+@AllArgsConstructor
 public class ProductController {
 
     private final ProductsRepo productsRepo;
     private final GroupsRepo groupsRepo;
-
-    public ProductController(ProductsRepo productsRepo, GroupsRepo groupsRepo) {
-        this.productsRepo = productsRepo;
-        this.groupsRepo = groupsRepo;
-    }
 
     @GetMapping
     public List<Products> getAllPro() {
@@ -37,18 +32,18 @@ public class ProductController {
                                           @RequestParam(name = "volume") String volume,
                                           @RequestParam(name = "file") MultipartFile file,
                                           @RequestParam(name = "groupId") String groupId) {
-        if (productsRepo.existsByName(name)) return NotFoundResult;
-        Products product = new Products(price, name, description, shortDesc, saveFile(file), volume, groupsRepo.getOne(Long.parseLong(groupId)));
+        if (productsRepo.existsByName(name)) return Global.NotFoundResult;
+        Products product = new Products(price, name, description, shortDesc, Global.saveFile(file), volume, groupsRepo.getOne(Long.parseLong(groupId)));
         productsRepo.save(product);
-        return OkResult;
+        return Global.OkResult;
     }
 
     @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> delProd(@PathVariable Long id) {
         if (productsRepo.existsById(id)) {
             productsRepo.delete(productsRepo.getOne(id));
-            return OkResult;
-        } else return NotFoundResult;
+            return Global.OkResult;
+        } else return Global.NotFoundResult;
     }
 
     @RequestMapping(value = "/upd/{id}", method = RequestMethod.PUT)
@@ -62,7 +57,7 @@ public class ProductController {
                                            @PathVariable Long id) {
         if (productsRepo.existsById(id)) {
             Products beforeProduct = productsRepo.getOne(id);
-            if (file != null) beforeProduct.setImageFileName(saveFile(file));
+            if (file != null) beforeProduct.setImageFileName(Global.saveFile(file));
             beforeProduct.setName(name);
             beforeProduct.setDescription(description);
             beforeProduct.setShortDesc(fullDesc);
@@ -70,7 +65,7 @@ public class ProductController {
             beforeProduct.setVolume(volume);
             beforeProduct.setRelatedGroup(groupsRepo.getOne(Long.parseLong(groupId)));
             productsRepo.save(beforeProduct);
-            return OkResult;
-        } else return NotFoundResult;
+            return Global.OkResult;
+        } else return Global.NotFoundResult;
     }
 }

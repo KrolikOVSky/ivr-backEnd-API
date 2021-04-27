@@ -1,7 +1,7 @@
-package it.donnamaria.models;
+package it.ivr.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import it.donnamaria.services.Utilities;
+import it.ivr.services.Utilities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;

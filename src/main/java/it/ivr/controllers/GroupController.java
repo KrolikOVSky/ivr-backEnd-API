@@ -1,23 +1,20 @@
-package it.donnamaria.controllers;
+package it.ivr.controllers;
 
-import it.donnamaria.models.Groups;
-import it.donnamaria.repos.GroupsRepo;
+import it.ivr.models.Groups;
+import it.ivr.repos.GroupsRepo;
+import it.ivr.Global;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-import static it.donnamaria.Global.*;
-
 @RestController
 @RequestMapping("api/group")
+@AllArgsConstructor
 public class GroupController {
     private final GroupsRepo groupsRepo;
-
-    public GroupController(GroupsRepo groupsRepo) {
-        this.groupsRepo = groupsRepo;
-    }
 
     @GetMapping
     public List<Groups> getAllGro() {
@@ -28,19 +25,19 @@ public class GroupController {
     public ResponseEntity<String> addGroup(@RequestParam(name = "name") String name,
                                            @RequestParam(name = "file") MultipartFile file) {
         if (groupsRepo.existsByName(name)) {
-            return NotFoundResult;
+            return Global.NotFoundResult;
         }
-        Groups group = new Groups(name, saveFile(file));
+        Groups group = new Groups(name, Global.saveFile(file));
         groupsRepo.save(group);
-        return OkResult;
+        return Global.OkResult;
     }
 
     @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<String> delGroup(@PathVariable Long id) {
         if (groupsRepo.existsById(id)) {
             groupsRepo.delete(groupsRepo.getOne(id));
-            return OkResult;
-        } else return NotFoundResult;
+            return Global.OkResult;
+        } else return Global.NotFoundResult;
     }
 
     @RequestMapping(value = "/upd/{id}", method = RequestMethod.PUT)
@@ -50,10 +47,10 @@ public class GroupController {
         if (groupsRepo.existsById(id)) {
             var beforeGroup = groupsRepo.getOne(id);
             beforeGroup.setName(name);
-            if (file != null) beforeGroup.setImageFileName(saveFile(file));
+            if (file != null) beforeGroup.setImageFileName(Global.saveFile(file));
             groupsRepo.save(beforeGroup);
-            return OkResult;
-        } else return NotFoundResult;
+            return Global.OkResult;
+        } else return Global.NotFoundResult;
     }
 
 }

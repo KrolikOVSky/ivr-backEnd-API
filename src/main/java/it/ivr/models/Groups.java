@@ -1,6 +1,6 @@
-package it.donnamaria.models;
+package it.ivr.models;
 
-import it.donnamaria.services.Utilities;
+import it.ivr.services.Utilities;
 import lombok.*;
 
 import javax.persistence.*;

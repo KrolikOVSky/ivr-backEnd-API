@@ -1,4 +1,4 @@
-package it.donnamaria.config;
+package it.ivr.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

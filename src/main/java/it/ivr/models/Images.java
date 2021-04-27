@@ -1,4 +1,4 @@
-package it.donnamaria.models;
+package it.ivr.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
